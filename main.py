@@ -35,5 +35,10 @@ async def get_random_website():
     
     return jsonify({"text": web_site, "website": web_site, "site": web_site})
 
+
+@app.errorhandler(404)
+async def handle_404():
+    return await render_template("404.html")
+
 if __name__ == "__main__":
     app.run(debug=True)
