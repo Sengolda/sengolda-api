@@ -4,7 +4,9 @@ from fastapi.exceptions import HTTPException
 
 import random
 
-app = FastAPI(__name__)
+app = FastAPI(
+    debug=True
+)
 
 def get_random_line(file):
     with open(file, "r", encoding="utf-8") as fp:
@@ -41,6 +43,3 @@ async def get_random_website():
 @app.exception_handler(HTTPException)
 async def handle_http_exception():
     return open("templates/index.html", "r", encoding="Utf-8").read()
-
-if __name__ == "__main__":
-    app.run(debug=True)
