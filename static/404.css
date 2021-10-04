@@ -1,0 +1,31 @@
+body {
+    background: linear-gradient(0.25turn, rgb(60, 120, 230), rgb(38, 110, 226), #0fe750);
+    font-family: sans-serif;
+}
+
+.buttons button{
+    border: 2px solid #fff;
+    padding: 20px 40px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 45px;
+    margin: 6px 3px;
+    transition: 0.5s all ease;
+    color: white;
+    background: transparent;
+    cursor: pointer;
+    margin-left: 41%;
+}
+
+.buttons button:hover {
+    background: #fff;
+    border-color: 4px solid white;
+    color: #000;
+}
+
+.text{
+    margin-top: 15%;
+    text-align: center;
+    font-size: 69px;
+    color: white;
+}
