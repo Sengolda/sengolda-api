@@ -1,6 +1,6 @@
-from fastapi import *
+from fastapi import FastAPI
 from fastapi.responses import HTMLResponse, JSONResponse as jsonify, RedirectResponse
-from fastapi.exceptions import HTTPException
+from starlette.exceptions import HTTPException as StarletteHTTPException
 
 import random
 
@@ -46,6 +46,6 @@ async def get_random_website():
     )
 
 
-@app.exception_handler(HTTPException)
-async def handle_http_exception():
+@app.exception_handler(StarletteHTTPException)
+async def handle_http_exception(request, exc):
     return open("templates/index.html", "r", encoding="Utf-8").read()
