@@ -1,18 +1,37 @@
-:root {
-    --theme-body: #fff;
-    --theme-code: #f8f8f8;
-    --theme-headers: #159957;
-    --theme-text: #606c71;
-    --theme-inline: #567482;
-    --theme-links: #1e6bb8;
-    --theme-contrast: #ece9e9;
-}
-
-b,strong {
-        font-weight: bold
-        }
-
 body {
     background: linear-gradient(0.25turn,rgb(212, 206, 206),rgb(38, 110, 226), #0fe750);
     font-family: sans-serif;
+}
+
+.buttons button{
+    border: 2px solid #fff;
+    padding: 20px 40px;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 15px;
+    margin: 6px 3px;
+    transition: 0.5s all ease;
+    color: white;
+    background: transparent;
+    cursor: pointer;
+    margin-left: 43%;
+}
+
+.buttons button:hover {
+    background: #fff;
+    border-color: 4px solid white;
+    color: #000;
+}
+
+.main-text{
+    text-align: center;
+    color: white;
+}
+
+.main-text p{
+    font-size: 30px;
+}
+
+.main-text h1{
+    font-size: 50px;
 }
