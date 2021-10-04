@@ -81,7 +81,7 @@ async def get_random_website(request: Request):
 
     web_site = get_random_line("storage/websites.txt")
     if web_site == "":  # If it's an empty line
-        web_site = get_random_line("storage/facts.txt")  # Get a new site.
+        web_site = get_random_line("storage/websites.txt")  # Get a new site.
 
     return jsonify({"text": web_site, "website": web_site, "site": web_site})
 
