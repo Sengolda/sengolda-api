@@ -1,7 +1,10 @@
 from quart import *
 import random
+import uuid
 
 app = Quart(__name__)
+app.config["SECRET_KEY"] = str(uuid.uuid4())
+
 
 def get_random_line(file):
     with open(file, "r", encoding="utf-8") as fp:
