@@ -48,4 +48,4 @@ async def get_random_website():
 
 @app.exception_handler(StarletteHTTPException)
 async def handle_http_exception(request, exc):
-    return open("templates/index.html", "r", encoding="Utf-8").read()
+    return RedirectResponse("/")
