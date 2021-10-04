@@ -1,6 +1,12 @@
-from quart import Quart, render_template
+from quart import *
+import random
 
 app = Quart(__name__)
+
+def get_random_line(file):
+    with open(file, "r", encoding="utf-8") as fp:
+        lines = fp.read().splitlines()
+        return random.choice(lines)
 
 @app.route("/")
 async def hello():
@@ -8,7 +14,16 @@ async def hello():
 
 @app.route("/api")
 async def json():
-    return {"hello": "world"}
+    return await redirect(url_for("/"))
+
+@app.route("/api/fact")
+async def get_fact():
+    fact = get_random_line("storage/facts.txt")
+    if fact == "": # If it's an empty line
+        fact = get_random_line() # Get a new fact.
+    
+    return jsonify({"text": fact, "fact": fact})
+
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)

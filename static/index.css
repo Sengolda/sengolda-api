@@ -3,11 +3,11 @@ b {
         }
 
 body {
-    background: linear-gradient(0.25turn, rgb(38, 110, 228), rgb(38, 110, 226), #0fe750);
+    background: linear-gradient(0.25turn, rgb(38, 110, 227), rgb(38, 110, 226), #0fe750);
     font-family: sans-serif;
 }
 
 .header {
     text-align: center;
-    color: whitesmoke;
+    color: whites;
 }
