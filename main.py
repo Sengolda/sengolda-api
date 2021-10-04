@@ -1,25 +1,27 @@
-from quart import *
+from fastapi import *
+from fastapi.responses import HTMLResponse, JSONResponse as jsonify, RedirectResponse
+from fastapi.exceptions import HTTPException
+
 import random
-import uuid
 
-app = Quart(__name__)
-app.config["SECRET_KEY"] = str(uuid.uuid4())
-
+app = FastAPI(__name__)
 
 def get_random_line(file):
     with open(file, "r", encoding="utf-8") as fp:
         lines = fp.read().splitlines()
         return random.choice(lines)
 
-@app.route("/")
+@app.get("/", response_class=HTMLResponse)
+@app.get("/home", response_class=HTMLResponse)
 async def hello():
-    return await render_template("index.html")
+    return open("templates/index.html", "r", encoding="Utf-8").read()
 
-@app.route("/api")
+
+@app.get("/api", response_class=RedirectResponse)
 async def json():
-    return await redirect(url_for("/"))
+    return RedirectResponse(url="/")
 
-@app.route("/api/fact")
+@app.get("/api/fact", response_class=jsonify)
 async def get_fact():
     fact = get_random_line("storage/facts.txt")
     if fact == "": # If it's an empty line
@@ -27,7 +29,7 @@ async def get_fact():
     
     return jsonify({"text": fact, "fact": fact})
 
-@app.route("/api/website")
+@app.get("/api/website", response_class=jsonify)
 async def get_random_website():
     web_site = get_random_line("storage/websites.txt")
     if web_site == "": # If it's an empty line
@@ -36,9 +38,9 @@ async def get_random_website():
     return jsonify({"text": web_site, "website": web_site, "site": web_site})
 
 
-@app.errorhandler(404)
-async def handle_404():
-    return await render_template("404.html")
+@app.exception_handler(HTTPException)
+async def handle_http_exception():
+    return open("templates/index.html", "r", encoding="Utf-8").read()
 
 if __name__ == "__main__":
     app.run(debug=True)
