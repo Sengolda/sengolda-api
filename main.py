@@ -23,10 +23,17 @@ async def json():
 async def get_fact():
     fact = get_random_line("storage/facts.txt")
     if fact == "": # If it's an empty line
-        fact = get_random_line() # Get a new fact.
+        fact = get_random_line("storage/facts.txt") # Get a new fact.
     
     return jsonify({"text": fact, "fact": fact})
 
+@app.route("/api/website")
+async def get_random_website():
+    web_site = get_random_line("storage/websites.txt")
+    if web_site == "": # If it's an empty line
+        web_site = get_random_line("storage/facts.txt") # Get a new site.
+    
+    return jsonify({"text": web_site, "website": web_site, "site": web_site})
 
 if __name__ == "__main__":
     app.run(debug=True)
