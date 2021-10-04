@@ -1,0 +1,18 @@
+:root {
+    --theme-body: #fff;
+    --theme-code: #f8f8f8;
+    --theme-headers: #159957;
+    --theme-text: #606c71;
+    --theme-inline: #567482;
+    --theme-links: #1e6bb8;
+    --theme-contrast: #ece9e9;
+}
+
+b,strong {
+        font-weight: bold
+        }
+
+body {
+    background: linear-gradient(0.25turn,rgb(212, 206, 206),rgb(38, 110, 226), #0fe750);
+    font-family: sans-serif;
+}
