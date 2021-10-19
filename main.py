@@ -1,15 +1,12 @@
 import random
 import uuid
 
-import tempfile
 import pymongo
-import subprocess
 from fastapi import FastAPI, Request, exceptions, status
-from fastapi.responses import HTMLResponse, FileResponse
+from fastapi.responses import HTMLResponse
 from fastapi.responses import JSONResponse as jsonify
 from fastapi.responses import RedirectResponse
 from starlette.exceptions import HTTPException as StarletteHTTPException
-from models import Speech
 
 from config import mongo_db_url
 
@@ -101,14 +98,6 @@ async def get_random_cat(request: Request):
         url = get_random_line("storage/cats.txt")  # Get a new image.
 
     return jsonify({"file": url, "url": url})
-
-@app.get("/api/tts")
-async def tts_speech(request: Speech):
-    print(request.text)
-    with tempfile.NamedTemporaryFile(delete=False, suffix=".aiff") as f:
-        subprocess.run(["say", "-v", "daniel", "-o", f.name, request.text])
-        return FileResponse(f.name)
-
 
 
 @app.exception_handler(StarletteHTTPException)
