@@ -2,7 +2,7 @@ import random
 import uuid
 
 import pymongo
-from fastapi import FastAPI, Request, exceptions, status
+from fastapi import FastAPI, Request, status
 from fastapi.responses import HTMLResponse
 from fastapi.responses import JSONResponse as jsonify
 from fastapi.responses import RedirectResponse
@@ -10,7 +10,6 @@ from starlette.exceptions import HTTPException as StarletteHTTPException
 
 from config import mongo_db_url
 
-blacklitsed_agents = ["Bot", "Bots"]
 app = FastAPI(debug=True)
 mongo_cluster = pymongo.MongoClient(mongo_db_url)
 db = mongo_cluster["Sengolda-Api"]
